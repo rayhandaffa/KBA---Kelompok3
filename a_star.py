@@ -1,9 +1,9 @@
 from copy import deepcopy
 
-INIT_STATE = [[1, 2, 3], [5, 0, 4], [6, 7, 8]]
-GOAL_STATE = [[0, 1, 2], [5, 4, 3], [6, 7, 8]]
+INIT_STATE = []
+GOAL_STATE = []
 DIM = 3
-
+mark_tree = []
 node_created = 1
 
 
@@ -96,19 +96,23 @@ class Tree:
                 Tree(state, self, self.depth + 1, node_created, []))
 
 
-tree = None
-
-
-def a_star_search():
-    global node_created
+def a_star_search(init_state, goal_state):
+    global node_created, INIT_STATE, GOAL_STATE
+    INIT_STATE = init_state
+    GOAL_STATE = goal_state
     priority_queue = []
 
-    tree = Tree(INIT_STATE)
+    tree = Tree(INIT_STATE, children=[])
 
     while not is_equal(tree.state, GOAL_STATE):
+        mark_tree.append(tree.state)
+        # print(tree)
         tree.add_children()
 
+        # priority queue based on cost + depth
         for child in tree.children:
+            if child.state in mark_tree:
+                continue
             priority_queue.append(
                 [child, child.cost + child.depth, child.node_number])
 
@@ -121,8 +125,8 @@ def a_star_search():
         tree = tree.parent
         output.append(tree.state)
 
+    print(f"Node Created: {node_created}")
+    print(f"Depth: {len(output)}")
+    print("Path:")
     for out in output[::-1]:
         print(out)
-
-
-a_star_search()
