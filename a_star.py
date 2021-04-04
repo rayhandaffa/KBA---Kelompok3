@@ -106,7 +106,6 @@ def a_star_search(init_state, goal_state):
 
     while not is_equal(tree.state, GOAL_STATE):
         mark_tree.append(tree.state)
-        # print(tree)
         tree.add_children()
 
         # priority queue based on cost + depth

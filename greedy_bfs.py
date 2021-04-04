@@ -103,27 +103,19 @@ def greedy_bfs(init_state, goal_state):
     priority_queue = []
 
     tree = Tree(INIT_STATE, children=[])
-    # print(tree)
     while not is_equal(tree.state, GOAL_STATE):
         mark_tree.append(tree.state)
-        # print(tree)
-        # print(tree.children)
         tree.add_children()
 
-        # print("test:")
         # priority queue based on cost
         for child in tree.children:
             if child.state in mark_tree:
                 continue
             priority_queue.append(
                 [child, child.cost, child.node_number])
-            # print(priority_queue[-1][0])
 
         priority_queue.sort(key=lambda x: (-x[1], -x[2]))
         tree = priority_queue.pop()[0]
-
-        # print("PQ")
-        # print(priority_queue)
 
     output = []
     output.append(tree.state)
