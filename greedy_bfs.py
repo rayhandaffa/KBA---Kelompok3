@@ -101,6 +101,7 @@ def greedy_bfs(init_state, goal_state):
     INIT_STATE = init_state
     GOAL_STATE = goal_state
     priority_queue = []
+    node_created = 0
 
     tree = Tree(INIT_STATE, children=[])
     while not is_equal(tree.state, GOAL_STATE):
@@ -125,6 +126,6 @@ def greedy_bfs(init_state, goal_state):
 
     print(f"Node Created: {node_created}")
     print(f"Depth: {len(output)}")
-    print("Path:")
-    for out in output[::-1]:
-        print(out)
+    # print("Path:")
+    # for out in output[::-1]:
+    #     print(out)

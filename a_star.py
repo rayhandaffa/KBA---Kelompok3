@@ -100,6 +100,7 @@ def a_star_search(init_state, goal_state):
     global node_created, INIT_STATE, GOAL_STATE
     INIT_STATE = init_state
     GOAL_STATE = goal_state
+    node_created = 0
     priority_queue = []
 
     tree = Tree(INIT_STATE, children=[])
@@ -126,6 +127,6 @@ def a_star_search(init_state, goal_state):
 
     print(f"Node Created: {node_created}")
     print(f"Depth: {len(output)}")
-    print("Path:")
-    for out in output[::-1]:
-        print(out)
+    # print("Path:")
+    # for out in output[::-1]:
+    #     print(out)
